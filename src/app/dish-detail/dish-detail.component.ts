@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
+import { DishService } from './../services/dish.service';
 import { DishModel } from './../shared/models/dish-model';
 
 @Component({
@@ -8,10 +11,20 @@ import { DishModel } from './../shared/models/dish-model';
   styleUrls: ['./dish-detail.component.scss'],
 })
 export class DishDetailComponent implements OnInit {
-  @Input()
   dish: DishModel;
 
-  constructor() {}
+  constructor(
+    private dishService: DishService,
+    private location: Location,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let id = this.activatedRoute.snapshot.params['id'];
+    this.dish = this.dishService.getDish(id);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 }
