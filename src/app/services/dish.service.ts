@@ -9,15 +9,15 @@ import { DishModel } from './../shared/models/dish-model';
 export class DishService {
   constructor() {}
 
-  getDishes(): DishModel[] {
-    return DISHES;
+  getDishes(): Promise<DishModel[]> {
+    return Promise.resolve(DISHES);
   }
 
-  getDish(id: string): DishModel {
-    return DISHES.filter((dish) => dish.id === id)[0];
+  getDish(id: string): Promise<DishModel> {
+    return Promise.resolve(DISHES.filter((dish) => dish.id === id)[0]);
   }
 
-  getFeaturedDish(): DishModel {
-    return DISHES.filter((dish) => dish.featured)[0];
+  getFeaturedDish(): Promise<DishModel> {
+    return Promise.resolve(DISHES.filter((dish) => dish.featured)[0]);
   }
 }

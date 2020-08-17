@@ -9,15 +9,15 @@ import { PROMOTIONS } from './../shared/models/promotions';
 export class PromotionService {
   constructor() {}
 
-  getPromotions(): PromotionModel[] {
-    return PROMOTIONS;
+  getPromotions(): Promise<PromotionModel[]> {
+    return Promise.resolve(PROMOTIONS);
   }
 
-  getPromotion(id: string): PromotionModel {
-    return PROMOTIONS.filter((promo) => promo.id === id)[0];
+  getPromotion(id: string): Promise<PromotionModel> {
+    return Promise.resolve(PROMOTIONS.filter((promo) => promo.id === id)[0]);
   }
 
-  getFeaturedPromotion(): PromotionModel {
-    return PROMOTIONS.filter((promo) => promo.featured)[0];
+  getFeaturedPromotion(): Promise<PromotionModel> {
+    return Promise.resolve(PROMOTIONS.filter((promo) => promo.featured)[0]);
   }
 }
