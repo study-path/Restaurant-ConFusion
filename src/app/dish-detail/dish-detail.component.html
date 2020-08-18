@@ -42,4 +42,11 @@
          </mat-list>
        </mat-card-content>
      </mat-card>
+
+     <div fxFlex
+          [hidden]="dish">
+       <mat-spinner>
+         <h4>Loading... Please Wait</h4>
+       </mat-spinner>
+     </div>
    </div>
