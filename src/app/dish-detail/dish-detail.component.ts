@@ -21,7 +21,7 @@ export class DishDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.dishService.getDish(id).then((dish) => (this.dish = dish));
+    this.dishService.getDish(id).subscribe((dish) => (this.dish = dish));
   }
 
   goBack(): void {
