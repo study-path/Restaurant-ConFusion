@@ -26,7 +26,8 @@ export class DishDetailComponent implements OnInit {
   ngOnInit(): void {
     this.dishService
       .getDishIds()
-      .subscribe((dishIds) => (this.dishIds = this.dishIds));
+      .subscribe((dishIds) => (this.dishIds = dishIds));
+
     this.activatedRoute.params
       .pipe(
         switchMap((params: Params) => this.dishService.getDish(params['id']))
@@ -36,6 +37,7 @@ export class DishDetailComponent implements OnInit {
         this.setPrevNext(dish.id);
       });
   }
+
   setPrevNext(dishId: string) {
     const index = this.dishIds.indexOf(dishId);
     this.prev = this.dishIds[
