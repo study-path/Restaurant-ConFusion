@@ -1,29 +1,55 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
-import { DISHES } from '../shared/models/dishes-model';
+import { baseURL } from '../shared/baseURL';
 import { DishModel } from './../shared/models/dish-model';
+import { ProcessHTTPMsgService } from './process-httpmsg.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DishService {
-  constructor() {}
+  constructor(
+    private httpClient: HttpClient,
+    private processHTTPMsgService: ProcessHTTPMsgService
+  ) {}
 
   getDishes(): Observable<DishModel[]> {
-    return of(DISHES).pipe(delay(2000));
+    return this.httpClient
+      .get<DishModel[]>(baseURL + 'dishes')
+      .pipe(catchError(this.processHTTPMsgService.handlerError));
   }
 
   getDish(id: string): Observable<DishModel> {
-    return of(DISHES.filter((dish) => dish.id === id)[0]).pipe(delay(2000));
+    return this.httpClient
+      .get<DishModel>(baseURL + 'dishes/' + id)
+      .pipe(catchError(this.processHTTPMsgService.handlerError))
+      .pipe(catchError(this.processHTTPMsgService.handlerError));
   }
 
   getFeaturedDish(): Observable<DishModel> {
-    return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
+    return this.httpClient
+      .get<DishModel>(baseURL + 'dishes?featured=true')
+      .pipe(map((dishes) => dishes[0]));
   }
 
   getDishIds(): Observable<string[] | any> {
-    return of(DISHES.map((dish) => dish.id));
+    return this.getDishes()
+      .pipe(map((dishes) => dishes.map((dish) => dish.id)))
+      .pipe(catchError((error) => error));
+  }
+
+  putDish(dish: DishModel): Observable<DishModel> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.httpClient
+      .put<DishModel>(baseURL + 'dishes/' + dish.id, dish, httpOptions)
+      .pipe(catchError(this.processHTTPMsgService.handlerError));
   }
 }
