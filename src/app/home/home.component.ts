@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 
+import { expand, flyInOut } from '../animations/app.animation';
 import { DishService } from '../services/dish.service';
 import { DishModel } from '../shared/models/dish-model';
 import { PromotionModel } from '../shared/models/promotion-model';
@@ -11,6 +12,11 @@ import { LeaderModel } from './../shared/models/leader-model';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  host: {
+    '[@flyInOut]': 'true',
+    style: 'display:block;',
+  },
+  animations: [flyInOut(), expand()],
 })
 export class HomeComponent implements OnInit {
   dish: DishModel;

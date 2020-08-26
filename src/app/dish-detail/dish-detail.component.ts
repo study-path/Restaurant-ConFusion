@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
+import { expand, flyInOut, visibility } from '../animations/app.animation';
 import { DishService } from './../services/dish.service';
 import { CommentModel } from './../shared/models/comment-model';
 import { DishModel } from './../shared/models/dish-model';
@@ -12,6 +13,11 @@ import { DishModel } from './../shared/models/dish-model';
   selector: 'app-dish-detail',
   templateUrl: './dish-detail.component.html',
   styleUrls: ['./dish-detail.component.scss'],
+  host: {
+    '[@flyInOut]': 'true',
+    style: 'display:block;',
+  },
+  animations: [flyInOut(), visibility(), expand()],
 })
 export class DishDetailComponent implements OnInit {
   dish: DishModel;
@@ -26,6 +32,7 @@ export class DishDetailComponent implements OnInit {
   rating: number;
   errMessage: string;
   dishcopy: DishModel;
+  visibility = 'shown';
 
   @ViewChild('cform') commentFormDirective;
 
@@ -62,13 +69,17 @@ export class DishDetailComponent implements OnInit {
 
     this.activatedRoute.params
       .pipe(
-        switchMap((params: Params) => this.dishService.getDish(params['id']))
+        switchMap((params: Params) => {
+          this.visibility = 'hidden';
+          return this.dishService.getDish(params['id']);
+        })
       )
       .subscribe(
         (dish) => {
           this.dish = dish;
           this.dishcopy = dish;
           this.setPrevNext(dish.id);
+          this.visibility = 'shown';
         },
         (errMessage) => (this.errMessage = <any>this.errMessage)
       );

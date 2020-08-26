@@ -7,7 +7,9 @@
       fxLayoutGap.xs="0">
 
    <div fxFlex="40"
-        *ngIf="dish">
+        *ngIf="dish"
+        [@visibility]="visibility"
+        [@expand]>
      <mat-card>
        <mat-card-header>
          <mat-card-title>{{dish.name | uppercase}}</mat-card-title>
@@ -37,7 +39,8 @@
    </div>
 
    <div fxFlex="40"
-        *ngIf="dish">
+        *ngIf="dish"
+        [@visibility]="visibility">
      <mat-card>
        <mat-card-header>
          <mat-card-title>COMMENTS</mat-card-title>

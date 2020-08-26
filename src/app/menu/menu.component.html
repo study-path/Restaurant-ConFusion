@@ -10,7 +10,8 @@
    </div>
 
    <div fxFlex
-        *ngIf="dishes">
+        *ngIf="dishes"
+        [@expand]>
      <mat-grid-list cols="2"
                     rowHeight="200px">
        <mat-grid-tile *ngFor="let dish of dishes"
