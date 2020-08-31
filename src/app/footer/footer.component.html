@@ -1,15 +1,9 @@
 <div class="container footer"
-     fxLayout="row wrap"
-     fxLayout.lt-md="column"
-     fxLayoutAlign="center center"
-     fxLayoutGap="10px">
+     fxLayout="column">
 
-  <div fxFlex="100"
-       fxFlex.gt-sm="50">
-    <div fxLayout="row">
-      <div fxFlex="40"
-           fxFlexOffset="20px">
-        <h4>Links</h4>
+  <div fxFlex="100">
+    <div>
+      <div fxFlex="50">
         <mat-list>
           <mat-list-item><a mat-button
                routerLink="/home"
@@ -25,7 +19,7 @@
                routerLinkActive="active">Contact</a></mat-list-item>
         </mat-list>
       </div>
-      <div fxFlex="55">
+      <div fxFlex="50">
         <h4>Our Address</h4>
         <address style="text-size: 80%">
           121, Clear Water Bay Road<br> Clear Water Bay, Kowloon<br> HONG KONG<br>
@@ -38,8 +32,11 @@
     </div>
   </div>
   <div fxFlex="100"
-       fxFlex.gt-sm="45">
-    <div style="text-align:center">
+       fxFlex.gt-sm="45"
+       fxLayoutGap="10px"
+       style="margin-bottom:10px">
+    <div fxLayoutAlign="center"
+         fxLayoutGap="10px">
       <a mat-icon-button
          class="btn-google-plus"
          href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a>
@@ -60,7 +57,9 @@
          href="mailto:"><i class="fa fa-envelope-o fa-lg"></i></a>
     </div>
   </div>
-  <div>
+  <div fxLayoutAlign="center">
     <p>© Copyright 2018 Ristorante Con Fusion</p>
   </div>
+
+
 </div>

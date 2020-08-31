@@ -44,10 +44,9 @@
        fxFlexOffset='20px'
        class='form-size'>
     <h3>Send us your feedback</h3>
-    <p>
-      {{feedbackForm.value | json }} {{feedbackForm.status | json}}
-    </p>
-    <form novalidate
+
+    <form [hidden]="isSending || feedback"
+          novalidate
           [formGroup]="feedbackForm"
           #fform="ngForm"
           (ngSubmit)="onSubmit()">
@@ -114,7 +113,30 @@
       <button type="submit"
               mat-button
               class="background-primary text-floral-white"
-              [disabled]="feedbackForm.invalid">Submit</button>
+              [disabled]="feedbackForm.invalid">Submit
+      </button>
     </form>
+
+    <div fxFlex
+         *ngIf="isSending">
+      <mat-spinner>
+        <h4>Submitting form</h4>
+      </mat-spinner>
+    </div>
   </div>
+
+  <div *ngIf="feedback">
+    <h2>Your submission</h2>
+    <mat-list-item role="listitem">
+      <div mat-line> First Name: {{feedback.firstname}}</div>
+      <div mat-line> Last Name: {{feedback.lastname}} </div>
+      <div mat-line> Tel. Number: {{feedback.telnumber}} </div>
+      <div mat-line> Email: {{feedback.email}}</div>
+      <div mat-line>Contact You?: {{feedback.agree}} </div>
+      <div mat-line> How? : {{feedback.contacttype}} </div>
+      <div mat-line> Feedback : {{ feedback.message}} </div>
+    </mat-list-item>
+  </div>
+
+
 </div>

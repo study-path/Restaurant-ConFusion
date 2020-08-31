@@ -3,36 +3,43 @@
       fxLayoutGap="10px">
 
    <div fxFlex>
-     <div>
+     <div fxLayoutAlign="space-around center">
        <h3>Menu</h3>
        <hr>
      </div>
    </div>
 
-   <div fxFlex
-        *ngIf="dishes"
+   <div *ngIf="dishes"
         [@expand]>
-     <mat-grid-list cols="2"
-                    rowHeight="200px">
-       <mat-grid-tile *ngFor="let dish of dishes"
-                      routerLink='/dishdetail/{{dish.id}}'
-                      appHighlight>
-         <img height="200px"
-              src="{{BaseURL + dish.image}}"
-              alt={{dish.name}}>
-         <mat-grid-tile-footer>
+     <div class="container"
+          fxLayoutAlign="space-around">
+       <mat-card *ngFor="let dish of dishes"
+                 appHighlight
+                 class="card">
+         <a routerLink='/dishdetail/{{dish.id}}'
+            routerLinkActive="active">
+           <mat-card-title-group>
+             <img class="wer"
+                  src="{{BaseURL + dish.image}}"
+                  alt={{dish.name}}>
+           </mat-card-title-group>
            <h1>{{dish.name | uppercase}}</h1>
-         </mat-grid-tile-footer>
-       </mat-grid-tile>
-     </mat-grid-list>
-   </div>
-   <div fxFlex
-        [hidden]="dishes || errMessage">
-     <mat-spinner></mat-spinner>
-     <h4>Loading ... Please wait</h4>
-     <div fxFlex
-          *ngIf="errMessage">
-       <h2>Error</h2>
-       <h4>{{errMessage}}</h4>
+         </a>
+       </mat-card>
      </div>
    </div>
+
+   <div fxFlex
+        [hidden]="dishes || errMessage">
+     <mat-spinner>
+       <h4>Loading ... Please wait</h4>
+     </mat-spinner>
+   </div>
+   <div fxFlex
+        *ngIf="errMessage">
+     <h2>Error</h2>
+     <h4>{{errMessage}}</h4>
+   </div>
+
+
+ </div>

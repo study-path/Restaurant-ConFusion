@@ -25,14 +25,14 @@ export class DishService {
   getDish(id: string): Observable<DishModel> {
     return this.httpClient
       .get<DishModel>(baseURL + 'dishes/' + id)
-      .pipe(catchError(this.processHTTPMsgService.handlerError))
       .pipe(catchError(this.processHTTPMsgService.handlerError));
   }
 
   getFeaturedDish(): Observable<DishModel> {
     return this.httpClient
       .get<DishModel>(baseURL + 'dishes?featured=true')
-      .pipe(map((dishes) => dishes[0]));
+      .pipe(map((dishes) => dishes[0]))
+      .pipe(catchError(this.processHTTPMsgService.handlerError));
   }
 
   getDishIds(): Observable<string[] | any> {

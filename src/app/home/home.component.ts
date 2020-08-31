@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit {
   leader: LeaderModel;
 
   dishErrMessage: string;
+  promotionErrMessage: string;
+  leaderErrMessage: string;
 
   constructor(
     private dishService: DishService,
@@ -38,12 +40,15 @@ export class HomeComponent implements OnInit {
       (dishErrMessage) => (this.dishErrMessage = <any>dishErrMessage)
     );
 
-    this.promotionService
-      .getFeaturedPromotion()
-      .subscribe((promotion) => (this.promotion = promotion));
+    this.promotionService.getFeaturedPromotion().subscribe(
+      (promotion) => (this.promotion = promotion),
+      (promotionErrMessage) =>
+        (this.promotionErrMessage = <any>promotionErrMessage)
+    );
 
-    this.leaderService
-      .getFeaturedLeader()
-      .subscribe((leader) => (this.leader = leader));
+    this.leaderService.getFeaturedLeader().subscribe(
+      (leader) => (this.leader = leader),
+      (leaderErrMessage) => (this.leaderErrMessage = <any>leaderErrMessage)
+    );
   }
 }

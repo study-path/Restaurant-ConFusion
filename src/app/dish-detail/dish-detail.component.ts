@@ -162,6 +162,7 @@ export class DishDetailComponent implements OnInit {
     const comment: CommentModel = this.commentForm.value;
     comment.date = new Date().toDateString();
     this.dishcopy.comments.push(comment);
+
     this.dishService.putDish(this.dishcopy).subscribe(
       (dish) => {
         this.dish = dish;

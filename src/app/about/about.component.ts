@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { expand, flyInOut } from '../animations/app.animation';
@@ -17,15 +17,18 @@ import { LeaderService } from './../services/leader.service';
 })
 export class AboutComponent implements OnInit {
   leaders: LeaderModel[];
+  leaderErrMessage: string;
 
   constructor(
     private leaderService: LeaderService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    @Inject('BaseURL') private BaseURL
   ) {}
 
   ngOnInit(): void {
-    this.leaderService
-      .getLeaders()
-      .subscribe((leaders) => (this.leaders = leaders));
+    this.leaderService.getLeaders().subscribe(
+      (leaders) => (this.leaders = leaders),
+      (leaderErrMessage) => (this.leaderErrMessage = <any>leaderErrMessage)
+    );
   }
 }
