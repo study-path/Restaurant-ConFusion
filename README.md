@@ -13,16 +13,15 @@ This simple ......
 ## Usage
 
 <ol>
-<li>clone this repository to your server</li>
+  <li>clone this repository to your server</li>
 </ol>
-<div class="highlight highlight-source-shell"><pre>git clone https://github.com/study-path/Restaurant-ConFusion.git</pre></div>
+  <div class="highlight highlight-source-shell"><pre>git clone https://github.com/study-path/Restaurant-ConFusion.git</pre></div>
 <ol start="2">
-<li>Move to "json-server" folder in your terminal window, and type the following at the command prompt to start the server:
-</li>
-</ol>
-<div class="highlight highlight-source-shell"><pre>json-server --watch db.json -d 2000</pre></div>
+  <li>Move to "json-server" folder in your terminal window, and type the following at the command prompt to start the server:</li>
+</ol start="3">
+  <div class="highlight highlight-source-shell"><pre>json-server --watch db.json -d 2000</pre></div>
 <ol>
-<li><code>npm install</code> to install all dependencies or <code>yarn</code></li>
+  <li><code>npm install</code> to install all dependencies or <code>yarn</code></li>
 </ol>
 
 ## Build
