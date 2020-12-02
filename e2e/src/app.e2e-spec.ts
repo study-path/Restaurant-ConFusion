@@ -1,6 +1,6 @@
-//import { browser, logging } from 'protractor';
-import { AppPage } from './app.po';
+import { browser, logging } from 'protractor';
 
+import { AppPage } from './app.po';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -21,28 +21,29 @@ describe('workspace-project App', () => {
     expect(page.getTitleText('h3')).toBe('About Us');
   });
 
-  // afterEach(async () => {
-  //   // Assert that there are no errors emitted from the browser
-  //   const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-  //   expect(logs).not.toContain(
-  //     jasmine.objectContaining({
-  //       level: logging.Level.SEVERE,
-  //     } as logging.Entry)
-  //   );
+  //it('should enter a new comment for the first dish', () => {
+  // page.navigateTo('/dishdetail/0');
+
+  //const newAuthor = page.getElement('input[type=text]');
+
+  //newAuthor.sendKeys('Test Author');
+
+  //const newComment = page.getElement('textarea');
+  //newComment.sendKeys('Test Comment');
+
+  //const newSubmitButton = page.getElement('button[type=submit]');
+  //newSubmitButton.click();
+
+  //browser.pause();
   // });
 
-  it('should enter a new comment for the first dish', () => {
-    page.navigateTo('/dishdetail/0');
-
-    const newAuthor = page.getElement('input[type=text]');
-    newAuthor.sendKeys('Test Author');
-
-    const newComment = page.getElement('textarea');
-    newComment.sendKeys('Test Comment');
-
-    const newSubmitButton = page.getElement('button[type=submit]');
-    newSubmitButton.click();
-
-    //browser.pause();
+  afterEach(async () => {
+    // Assert that there are no errors emitted from the browser
+    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
+    expect(logs).not.toContain(
+      jasmine.objectContaining({
+        level: logging.Level.SEVERE,
+      } as logging.Entry)
+    );
   });
 });
