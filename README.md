@@ -1,6 +1,6 @@
 # Restaurant ConFusion
 
-![](/src/assets/images/4ooac3.gif)
+![](/src/assets/images/4op35h.gif)
 
 ## Description
 
